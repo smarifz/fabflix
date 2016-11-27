@@ -40,7 +40,7 @@ public class MovielistDAO {
                 ResultSet resultSet = statement.executeQuery();
         ) {
             while (resultSet.next()) {
-                Movie movie = new Movie(resultSet.getInt("id"), resultSet.getInt("year"), resultSet.getString("title"), resultSet.getString("director"), null, null, resultSet.getString("first_name"), resultSet.getString("last_name"));
+                Movie movie = new Movie(resultSet.getInt("id"), resultSet.getInt("year"), resultSet.getString("title"), resultSet.getString("director"), null, null);
                 movies.add(movie);
             }
         } catch (SQLException e) {

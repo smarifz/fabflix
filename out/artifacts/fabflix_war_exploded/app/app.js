@@ -44,9 +44,9 @@ var app = angular.module('synerApp', [
         }]} 
       })
 
-      .when('/events', {
-        templateUrl: 'app/views/events.html',
-        controller: 'EventCtrl',
+      .when('/movies', {
+        templateUrl: 'app/views/movielist.html',
+        controller: 'MoviesCtrl',
         resolve: {
           auth: ["$q", "AuthService", function($q, AuthService) {
           var isUserLoggedIn = AuthService.isLoggedIn();
@@ -77,22 +77,6 @@ var app = angular.module('synerApp', [
       })
 
 
-
-      .when('/addEvent', {
-        templateUrl: 'app/views/addEvent.html',
-        controller: 'EventCtrl',
-        resolve: {
-          auth: ["$q", "AuthService", function($q, AuthService) {
-          var isUserLoggedIn = AuthService.isLoggedIn();
-          if(isUserLoggedIn){
-            console.log("User Logged in");
-            return $q.when(isUserLoggedIn);
-          }else{
-            console.log("ERROR - No User Logged in");
-            return $q.reject({ authenticated: false });
-          }
-        }]}
-      })
 
       .when('/events/list', {
         templateUrl: 'app/views/eventList.html',

@@ -39,7 +39,7 @@ public class SearchDAO {
             PreparedStatement pst = conn.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                Movie movie = new Movie(rs.getInt("id"), rs.getInt("year"), rs.getString("title"), rs.getString("director"), null, null, rs.getString("first_name"), rs.getString("last_name"));
+                Movie movie = new Movie(rs.getInt("id"), rs.getInt("year"), rs.getString("title"), rs.getString("director"), null, null);
                 movies.add(movie);
             }
 

@@ -1,0 +1,50 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<header class="hero-unit" id="banner">
+    <div class="container">
+        <h1>Movies</h1>
+        <p class="lead">Movies</p>
+        <img src="assets/images/yeoman.png" alt="I'm Yeoman">
+    </div>
+</header>
+
+<div class="container" data-ng-init="init()">
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <td>
+                <a href="#" ng-click="sortType = 'ID'; sortReverse = !sortReverse">
+                    ID
+                    <span ng-show="sortType == 'ID' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'ID' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </td>
+            <td>
+                <a href="#" ng-click="sortType = 'Title'; sortReverse = !sortReverse">
+                    Title
+                    <span ng-show="sortType == 'Title' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'Title' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </td>
+            <td>
+                <a href="#" ng-click="sortType = 'Year'; sortReverse = !sortReverse">
+                    Year
+                    <span ng-show="sortType == 'Year' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'Year' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </td>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="movie in allMovies | orderBy:sortType:sortReverse">
+            <td><a href="#">{{movie.id}}</a></td>
+            <td> {{movie.title | uppercase}}</td>
+            <td> {{movie.year | date}}</td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+
+

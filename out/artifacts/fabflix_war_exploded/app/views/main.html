@@ -1,25 +1,75 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <header class="hero-unit" id="banner">
-  <div class="container">
-    <h1>Welcome!</h1>
-    <p class="lead">Event sign up portal.</p>
-    <img src="assets/images/yeoman.png" alt="I'm Yeoman">
-  </div>
-</header>
-
-<div class="container">
-  <div class="row">
-    <div class="col-lg-12">
-      <h4 class="text-left">Below are recent upcoming events:</h4>
-      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in awesomeThings">
-        <!-- <li><a href="#" tooltip="{{thing.info}}">{{thing.name}}</a></li> -->
-      </ul>
+    <div class="container">
+        <h1>Welcome!</h1>
+        <p class="lead">Fabflix</p>
+        <img src="assets/images/yeoman.png" alt="I'm Yeoman">
     </div>
-  </div>
+</header>
+<br>
+<div class="container">
+
+    Search:
+    <form>
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search">
+            <div class="input-group-btn">
+                <button class="btn btn-default" type="submit">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <br><br>
+
+    <table width="750" border="0" cellspacing="0" cellpadding="0">
+        <tbody><tr>
+            <td width="450" style="text-align:center;"><h4>Browse Movie by Genre</h4></td>
+            <td width="300" style="text-align:center;"><h4>Browse Movie by Title</h4></td>
+        </tr>
+        <tr>
+            <td colspan="2"><div class="tinyspacer">&nbsp;</div></td>
+        </tr>
+        <tr>
+            <td><table width="450" border="0" cellspacing="0" cellpadding="0">
+                <tbody><tr>
+                    <td style="text-align:center;">
+                        <a href="showMovies?by=genre&amp;arg=7&amp;order=t_asc&amp;page=1&amp;ipp=5">Action</a><br>
+                        <a href="showMovies?by=genre&amp;arg=4&amp;order=t_asc&amp;page=1&amp;ipp=5">Adventure</a><br>
+                        <a href="showMovies?by=genre&amp;arg=15&amp;order=t_asc&amp;page=1&amp;ipp=5">Animation</a><br>
+                        <a href="showMovies?by=genre&amp;arg=20&amp;order=t_asc&amp;page=1&amp;ipp=5">Biography</a><br>
+                        <a href="showMovies?by=genre&amp;arg=1&amp;order=t_asc&amp;page=1&amp;ipp=5">Comedy</a><br>
+                        <a href="showMovies?by=genre&amp;arg=12&amp;order=t_asc&amp;page=1&amp;ipp=5">Crime</a><br>
+                        <a href="showMovies?by=genre&amp;arg=22&amp;order=t_asc&amp;page=1&amp;ipp=5">Documentary</a><br>
+                        <a href="showMovies?by=genre&amp;arg=2&amp;order=t_asc&amp;page=1&amp;ipp=5">Drama</a><br>
+
+                    </td>
+                    <td style="text-align:center;">
+                        <a href="showMovies?by=genre&amp;arg=3&amp;order=t_asc&amp;page=1&amp;ipp=5">Family</a><br>
+                        <a href="showMovies?by=genre&amp;arg=8&amp;order=t_asc&amp;page=1&amp;ipp=5">Fantasy</a><br>
+                        <a href="showMovies?by=genre&amp;arg=17&amp;order=t_asc&amp;page=1&amp;ipp=5">Film-Noir</a><br>
+                        <a href="showMovies?by=genre&amp;arg=19&amp;order=t_asc&amp;page=1&amp;ipp=5">History</a><br>
+                        <a href="showMovies?by=genre&amp;arg=14&amp;order=t_asc&amp;page=1&amp;ipp=5">Horror</a><br>
+                        <a href="showMovies?by=genre&amp;arg=21&amp;order=t_asc&amp;page=1&amp;ipp=5">Music</a><br>
+                        <a href="showMovies?by=genre&amp;arg=13&amp;order=t_asc&amp;page=1&amp;ipp=5">Musical</a><br>
+                        <a href="showMovies?by=genre&amp;arg=16&amp;order=t_asc&amp;page=1&amp;ipp=5">Mystery</a><br>
+                    </td>
+                    <td style="text-align:center;"><a href="showMovies?by=genre&amp;arg=5&amp;order=t_asc&amp;page=1&amp;ipp=5">Romance</a><br>
+                        <a href="showMovies?by=genre&amp;arg=9&amp;order=t_asc&amp;page=1&amp;ipp=5">Sci-Fi</a><br>
+                        <a href="showMovies?by=genre&amp;arg=18&amp;order=t_asc&amp;page=1&amp;ipp=5">Sport</a><br>
+                        <a href="showMovies?by=genre&amp;arg=10&amp;order=t_asc&amp;page=1&amp;ipp=5">Thriller</a><br>
+                        <a href="showMovies?by=genre&amp;arg=11&amp;order=t_asc&amp;page=1&amp;ipp=5">War</a><br>
+                        <a href="showMovies?by=genre&amp;arg=6&amp;order=t_asc&amp;page=1&amp;ipp=5">Western</a><br>
+                    </td>
+                </tr>
+                </tbody></table></td>
+            <td valign="top" style="text-align:center;"><a href="showMovies?by=title&amp;arg=0&amp;order=t_asc&amp;page=1&amp;ipp=5">0</a> | <a href="showMovies?by=title&amp;arg=1&amp;order=t_asc&amp;page=1&amp;ipp=5">1</a> | <a href="showMovies?by=title&amp;arg=2&amp;order=t_asc&amp;page=1&amp;ipp=5">2</a> | <a href="showMovies?by=title&amp;arg=3&amp;order=t_asc&amp;page=1&amp;ipp=5">3</a> | <a href="showMovies?by=title&amp;arg=4&amp;order=t_asc&amp;page=1&amp;ipp=5">4</a> | <a href="showMovies?by=title&amp;arg=5&amp;order=t_asc&amp;page=1&amp;ipp=5">5</a> | <a href="showMovies?by=title&amp;arg=6&amp;order=t_asc&amp;page=1&amp;ipp=5">6</a> | <a href="showMovies?by=title&amp;arg=7&amp;order=t_asc&amp;page=1&amp;ipp=5">7</a> | <a href="showMovies?by=title&amp;arg=8&amp;order=t_asc&amp;page=1&amp;ipp=5">8</a> | <a href="showMovies?by=title&amp;arg=9&amp;order=t_asc&amp;page=1&amp;ipp=5">9</a><br>&nbsp;<br><a href="showMovies?by=title&amp;arg=A&amp;order=t_asc&amp;page=1&amp;ipp=5">A</a> | <a href="showMovies?by=title&amp;arg=B&amp;order=t_asc&amp;page=1&amp;ipp=5">B</a> | <a href="showMovies?by=title&amp;arg=C&amp;order=t_asc&amp;page=1&amp;ipp=5">C</a> | <a href="showMovies?by=title&amp;arg=D&amp;order=t_asc&amp;page=1&amp;ipp=5">D</a> | <a href="showMovies?by=title&amp;arg=E&amp;order=t_asc&amp;page=1&amp;ipp=5">E</a> | <a href="showMovies?by=title&amp;arg=F&amp;order=t_asc&amp;page=1&amp;ipp=5">F</a> | <a href="showMovies?by=title&amp;arg=G&amp;order=t_asc&amp;page=1&amp;ipp=5">G</a> | <a href="showMovies?by=title&amp;arg=H&amp;order=t_asc&amp;page=1&amp;ipp=5">H</a> | <a href="showMovies?by=title&amp;arg=I&amp;order=t_asc&amp;page=1&amp;ipp=5">I</a> | <a href="showMovies?by=title&amp;arg=J&amp;order=t_asc&amp;page=1&amp;ipp=5">J</a> | <a href="showMovies?by=title&amp;arg=K&amp;order=t_asc&amp;page=1&amp;ipp=5">K</a> | <a href="showMovies?by=title&amp;arg=L&amp;order=t_asc&amp;page=1&amp;ipp=5">L</a> | <a href="showMovies?by=title&amp;arg=M&amp;order=t_asc&amp;page=1&amp;ipp=5">M</a><br>&nbsp;<br><a href="showMovies?by=title&amp;arg=N&amp;order=t_asc&amp;page=1&amp;ipp=5">N</a> | <a href="showMovies?by=title&amp;arg=O&amp;order=t_asc&amp;page=1&amp;ipp=5">O</a> | <a href="showMovies?by=title&amp;arg=P&amp;order=t_asc&amp;page=1&amp;ipp=5">P</a> | <a href="showMovies?by=title&amp;arg=Q&amp;order=t_asc&amp;page=1&amp;ipp=5">Q</a> | <a href="showMovies?by=title&amp;arg=R&amp;order=t_asc&amp;page=1&amp;ipp=5">R</a> | <a href="showMovies?by=title&amp;arg=S&amp;order=t_asc&amp;page=1&amp;ipp=5">S</a> | <a href="showMovies?by=title&amp;arg=T&amp;order=t_asc&amp;page=1&amp;ipp=5">T</a> | <a href="showMovies?by=title&amp;arg=U&amp;order=t_asc&amp;page=1&amp;ipp=5">U</a> | <a href="showMovies?by=title&amp;arg=V&amp;order=t_asc&amp;page=1&amp;ipp=5">V</a> | <a href="showMovies?by=title&amp;arg=W&amp;order=t_asc&amp;page=1&amp;ipp=5">W</a> | <a href="showMovies?by=title&amp;arg=X&amp;order=t_asc&amp;page=1&amp;ipp=5">X</a> | <a href="showMovies?by=title&amp;arg=Y&amp;order=t_asc&amp;page=1&amp;ipp=5">Y</a> | <a href="showMovies?by=title&amp;arg=Z&amp;order=t_asc&amp;page=1&amp;ipp=5">Z</a><br>&nbsp;<br></td>
+        </tr>
+        </tbody></table>
 </div>
 <br>
-<div class="container" ng-controller="EventCtrl" data-ng-init="init()">
 
 </div>
 

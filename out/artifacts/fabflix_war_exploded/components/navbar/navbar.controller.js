@@ -18,8 +18,8 @@ angular.module('synerApp')
       'title': 'Users',
       'link': '/users'
     }, {
-      'title': 'Events',
-      'link': '/events'
+      'title': 'Movies',
+      'link': '/movies'
     },{
       'title': 'Leagues',
       'link': '/leagues'

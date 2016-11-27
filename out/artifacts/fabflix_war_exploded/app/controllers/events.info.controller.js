@@ -16,7 +16,7 @@ angular.module('synerApp')
           $scope.eventInfo = data;
           $scope.getAttendingStatus();
           // console.log(data);
-        })
+        });
     }
 
 
