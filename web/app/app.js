@@ -44,25 +44,25 @@ var app = angular.module('synerApp', [
         }]} 
       })
 
-      .when('/movies', {
-        templateUrl: 'app/views/movielist.html',
-        controller: 'MoviesCtrl',
-        resolve: {
-          auth: ["$q", "AuthService", function($q, AuthService) {
-          var isUserLoggedIn = AuthService.isLoggedIn();
-          if(isUserLoggedIn){
-            console.log("User Logged in");
-            return $q.when(isUserLoggedIn);
-          }else{
-            console.log("ERROR - No User Logged in");
-            return $q.reject({ authenticated: false });
-          }
-        }]}
-      })
+      //.when('/movies', {
+      //  templateUrl: 'app/views/movielist.html',
+      //  controller: 'MoviesCtrl',
+      //  resolve: {
+      //    auth: ["$q", "AuthService", function($q, AuthService) {
+      //    var isUserLoggedIn = AuthService.isLoggedIn();
+      //    if(isUserLoggedIn){
+      //      console.log("User Logged in");
+      //      return $q.when(isUserLoggedIn);
+      //    }else{
+      //      console.log("ERROR - No User Logged in");
+      //      return $q.reject({ authenticated: false });
+      //    }
+      //  }]}
+      //})
 
-      .when('/leagues', {
-        templateUrl: 'app/views/leagues.html',
-        controller: 'UserCtrl',
+      .when('/movies/:type/:attribute', {
+        templateUrl: 'app/views/movielist.html',
+        controller: 'MovieListCustomCtrl',
         resolve: {
           auth: ["$q", "AuthService", function($q, AuthService) {
           var isUserLoggedIn = AuthService.isLoggedIn();

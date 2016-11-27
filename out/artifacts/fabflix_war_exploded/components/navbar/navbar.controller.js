@@ -15,15 +15,6 @@ angular.module('synerApp')
       'title': 'Home',
       'link': '/'
     }, {
-      'title': 'Users',
-      'link': '/users'
-    }, {
-      'title': 'Movies',
-      'link': '/movies'
-    },{
-      'title': 'Leagues',
-      'link': '/leagues'
-    },{
       'title': showLogin.showLoginTitle(), //Fancy way of showing title. Easy way would have been to just put 'Logout'
       'link': showLogin.showLoginLink() //Fancy way of showing link. Easy way would have been to just put '/logout'
     }];

@@ -5,7 +5,7 @@ package com.fabflix.movielist;
  */
 // Import required java libraries
 
-import com.fabflix.beans.Movie;
+import com.fabflix.beans.Genre;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
@@ -17,8 +17,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet(name = "MovieListServlet", urlPatterns = {"/api/movies"})
-public class MovieListServlet extends HttpServlet {
+@WebServlet(name = "MovieListServlet", urlPatterns = {"/api/movies/genres"})
+public class MovieListGenreServlet extends HttpServlet {
     MovielistDAO ml;
 
     public void init() {
@@ -30,31 +30,12 @@ public class MovieListServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String type = request.getParameter("type");
         PrintWriter writer = response.getWriter();
-
-
-        List<Movie> movies = null;
-
-        if(type.equals("search")) {
-
-        }else if(type.equals("genre")){
-            String genre = request.getParameter("attribute");
-            if(genre != null && !genre.isEmpty()) {
-                movies = ml.executeSearchByGenre(genre);
-            }
-        }else if(type.equals("title")){
-            String name = request.getParameter("attribute");
-            if(name != null && !name.isEmpty()) {
-                movies = ml.executeSearchByTitle(name);
-            }
-        }
-
-
+        List<Genre> genres = null;
+        genres = ml.getGenres();
         Gson gson = new Gson();
-        String movies_json = gson.toJson(movies);
-        writer.print(movies_json);
-
+        String genre_json = gson.toJson(genres);
+        writer.print(genre_json);
     }
 
 

@@ -1,5 +1,6 @@
 package com.fabflix.movielist;
 
+import com.fabflix.beans.Genre;
 import com.fabflix.beans.Movie;
 
 import java.sql.*;
@@ -31,16 +32,53 @@ public class MovielistDAO {
 
     }
 
-
-    public List<Movie> executeSearchByGenre() {
-        List<Movie> movies = new ArrayList<Movie>();
+    public List<Genre> getGenres() {
+        List<Genre> genres = new ArrayList<Genre>();
 
         try (
-                PreparedStatement statement = conn.prepareStatement("SELECT * FROM movies");
+                PreparedStatement statement = conn.prepareStatement("select * from genres");
                 ResultSet resultSet = statement.executeQuery();
         ) {
             while (resultSet.next()) {
-                Movie movie = new Movie(resultSet.getInt("id"), resultSet.getInt("year"), resultSet.getString("title"), resultSet.getString("director"), null, null);
+                Genre genre = new Genre(resultSet.getInt("id"), resultSet.getString("name"));
+                genres.add(genre);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return genres;
+    }
+
+
+    public List<Movie> executeSearchByGenre(String genre) {
+        List<Movie> movies = new ArrayList<Movie>();
+
+        try (
+                PreparedStatement statement = conn.prepareStatement("select * from movies where id IN ( select movie_id from genres_in_movies where genre_id IN (select id from genres where ID = " + genre + ")) ");
+                ResultSet resultSet = statement.executeQuery();
+        ) {
+            while (resultSet.next()) {
+                Movie movie = new Movie(resultSet.getInt("id"), resultSet.getInt("year"), resultSet.getString("title"), resultSet.getString("director"), resultSet.getString("banner_url"), resultSet.getString("trailer_url"));
+                movies.add(movie);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return movies;
+
+    }
+
+    public List<Movie> executeSearchByTitle(String title) {
+        List<Movie> movies = new ArrayList<Movie>();
+
+        try (
+                PreparedStatement statement = conn.prepareStatement("select * from movies where title like  \'%"+ title+"%\'");
+                ResultSet resultSet = statement.executeQuery();
+        ) {
+            while (resultSet.next()) {
+                Movie movie = new Movie(resultSet.getInt("id"), resultSet.getInt("year"), resultSet.getString("title"), resultSet.getString("director"), resultSet.getString("banner_url"), resultSet.getString("trailer_url"));
                 movies.add(movie);
             }
         } catch (SQLException e) {
