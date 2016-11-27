@@ -1,0 +1,44 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<header class="hero-unit" id="banner">
+  <div class="container">
+    <h1>Event Info Page</h1>
+    <p class="lead">Below are all the events currently on schedule</p>
+    <img src="assets/images/yeoman.png" alt="I'm Yeoman">
+  </div>
+</header>
+<br><br>
+
+<div class="container">
+  You are currently: <a ng-init="reciprocal()" type="text" id="attending" ng-model"reciprocal()" > {{ reciprocal() }} </a> this event.
+  <br><br>
+  <button ng-click="attendingBridge()"> {{ attendingStatus }} </button>
+</div>
+
+
+<br><br>
+
+
+<div class="container" data-ng-init="init()">
+<!-- Columns are always 50% wide, on mobile and desktop -->
+<table class="table table-hover table table-condensed" ng-model="eventInfo">
+  <tr>
+    <th> Name: </th>
+    <td>   {{ eventInfo.name }}</a></td>
+  </tr>
+  <tr>
+      <th> Location: </th>
+      <td>  {{ eventInfo.location }}</a></td>
+  </tr>
+  <tr>
+    <th> Players: </th>
+    <td ng-repeat="players in eventInfo.attendees" ng-if="$index < 9">  {{ players }}</a></td>
+  </tr>
+  <tr>
+    <th> Subs: </th>
+    <td ng-repeat="players in eventInfo.attendees" ng-if="$index >= 9">  {{ players }}</a></td>
+  <tr>
+</table>
+</div>
+
+
