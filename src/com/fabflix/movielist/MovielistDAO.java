@@ -89,6 +89,22 @@ public class MovielistDAO {
 
     }
 
+    public Movie getMovie(String id) {
+        Movie movie = null;
+        try (
+                PreparedStatement statement = conn.prepareStatement("select * from movies where id ="+ id);
+                ResultSet resultSet = statement.executeQuery();
+        ) {
+            while (resultSet.next()) {
+                movie = new Movie(resultSet.getInt("id"), resultSet.getInt("year"), resultSet.getString("title"), resultSet.getString("director"), resultSet.getString("banner_url"), resultSet.getString("trailer_url"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return movie;
+
+    }
 
 
 }

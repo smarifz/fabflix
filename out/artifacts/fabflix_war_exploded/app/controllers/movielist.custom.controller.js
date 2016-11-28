@@ -6,6 +6,8 @@ angular.module ('synerApp')
 		$scope.sortType     = 'title'; // set the default sort type
 		$scope.sortReverse  = false;  // set the default sort order
 		$scope.searchModel   = 'title';     // set the default search/filter term
+		$scope.moviesPerPage = 10;
+		$scope.moviesPerPageList = [10,25,50, 100];
 
 		//Initialize /////////////////////////////////////////////////////////////////////
 		$scope.init = function () {

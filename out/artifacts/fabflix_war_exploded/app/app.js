@@ -98,9 +98,9 @@ var app = angular.module ('synerApp', [
 				}
 			})
 
-			.when ('/eventInfo/:id', {
-				templateUrl: 'app/views/eventInfo.html',
-				controller: 'EventInfoCtrl',
+			.when ('/movie/:id', {
+				templateUrl: 'app/views/movieInfo.html',
+				controller: 'MovieInfoCtrl',
 				resolve: {
 					auth: ["$q", "AuthService", function ($q, AuthService) {
 						var isUserLoggedIn = AuthService.isLoggedIn ();

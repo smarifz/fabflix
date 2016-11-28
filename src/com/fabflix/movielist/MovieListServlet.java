@@ -32,6 +32,7 @@ public class MovieListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String type = request.getParameter("type");
         PrintWriter writer = response.getWriter();
+        Gson gson = new Gson();
 
 
         List<Movie> movies = null;
@@ -48,10 +49,17 @@ public class MovieListServlet extends HttpServlet {
             if(name != null && !name.isEmpty()) {
                 movies = ml.executeSearchByTitle(name);
             }
+        }else if(type.equals("single")){
+            String id = request.getParameter("attribute");
+            if(id != null && !id.isEmpty()) {
+                Movie movie = ml.getMovie(id);
+                String movie_json = gson.toJson(movie);
+                writer.print(movie_json);
+
+            }
         }
 
 
-        Gson gson = new Gson();
         String movies_json = gson.toJson(movies);
         writer.print(movies_json);
 

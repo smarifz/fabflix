@@ -6,8 +6,6 @@ angular.module ('synerApp')
 		//Local variables
 		$scope.allMovies = [];
 
-
-
 		//Initialize /////////////////////////////////////////////////////////////////////
 		$scope.init = function () {
 			$scope.reloadAllMoviesTable ();

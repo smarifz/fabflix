@@ -8,11 +8,7 @@
     </div>
 </header>
 <div class="container" data-ng-init="init()">
-    <div class="alert alert-info">
-        <p>Sort Type: {{ sortType }}</p>
-        <p>Sort Reverse: {{ sortReverse }}</p>
-        <p>Search Query: {{ searchFish }}</p>
-    </div>
+
 
     <table class="table table-bordered table-striped">
         <thead>
@@ -42,17 +38,23 @@
         </thead>
 
         <tbody>
-        <tr dir-paginate="movie in allMovies | orderBy:sortType:sortReverse | itemsPerPage: 10  ">
-            <td><a href="#">{{movie.id}}</a></td>
+        <tr dir-paginate="movie in allMovies | orderBy:sortType:sortReverse | itemsPerPage: moviesPerPage ">
+            <td><a href="/movie/{{movie.id}}">{{movie.id}}</a></td>
             <td> {{movie.title}}</td>
             <td> {{movie.year}}</td>
         </tr>
         </tbody>
 
     </table>
-    <dir-pagination-controls></dir-pagination-controls>
 
-
+    <table>
+        <tr>
+            <dir-pagination-controls></dir-pagination-controls>
+        </tr>
+        <tr>
+            <select ng-model="moviesPerPage" ng-options="x for x in moviesPerPageList"></select>
+        </tr>
+    </table>
 </div>
 
 

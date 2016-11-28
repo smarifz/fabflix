@@ -11,7 +11,9 @@ angular.module ('synerApp')
 
 		//Get one event using ID
 		var getMovieRequest = function (id) {
-			return $http.get ('/api/movies/' + id);
+			return $http.get ('/api/movies',{
+				params: {type: 'single', attribute: id}
+			});
 		};
 
 		//Get all the genres
