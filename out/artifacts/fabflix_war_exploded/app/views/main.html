@@ -11,7 +11,7 @@
 <div class="container" data-ng-init="init()" >
 
     Search:
-    <form">
+    <form>
         <div class="input-group">
             <input ng-model="searchParams" type="text" class="form-control" placeholder="Search">
             <div class="input-group-btn">
@@ -39,8 +39,8 @@
             <td>
                 <table width="450" border="0" cellspacing="0" cellpadding="0">
                     <tbody>
-                    <tr ng-repeat="genre in allGenres">
-                        <td><a href="/movies/genre/{{genre.id}}">{{genre.name | uppercase}}</a></td>
+                    <tr ng-repeat="genre in allGenres | orderBy:'name'">
+                        <td><a href="/movies/genre/{{genre.id}}">{{genre.name | uppercase }}</a></td>
                     </tr>
                     </tbody>
                 </table>
