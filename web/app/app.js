@@ -81,9 +81,9 @@ var app = angular.module ('synerApp', [
 			})
 
 
-			.when ('/events/list', {
-				templateUrl: 'app/views/eventList.html',
-				controller: 'EventListCtrl',
+			.when ('/star/:id', {
+				templateUrl: 'app/views/starInfo.html',
+				controller: 'StarInfoCtrl',
 				resolve: {
 					auth: ["$q", "AuthService", function ($q, AuthService) {
 						var isUserLoggedIn = AuthService.isLoggedIn ();

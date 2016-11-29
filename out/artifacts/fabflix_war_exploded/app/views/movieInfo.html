@@ -1,11 +1,7 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <header class="hero-unit" id="banner">
-    <div class="container">
-        <h1>Movie Info</h1>
-        <p class="lead">Details</p>
-        <img src="assets/images/yeoman.png" alt="I'm Yeoman">
-    </div>
+    <div ng-include="'components/header.html'"></div>
 </header>
 
 
@@ -32,6 +28,16 @@
             <td> {{movieInfo.id}}</a></td>
             <td> {{movieInfo.title}}</td>
             <td> {{movieInfo.year | date}}</td>
+        </tr>
+        <tr>
+            <td ng-repeat="star in movieInfo.stars">
+                <a href="/star/{{star.id}}">  {{star.first_name}} {{star.last_name}} </a>
+            </td>
+        </tr>
+        <tr>
+            <td ng-repeat="genre in movieInfo.genres">
+                {{genre.name}}
+            </td>
         </tr>
         </tbody>
     </table>

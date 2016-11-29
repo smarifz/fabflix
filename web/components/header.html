@@ -1,0 +1,16 @@
+<div class="container">
+    <h1>Welcome!</h1>
+    <p class="lead">Fabflix</p>
+    <img src="assets/images/yeoman.png" alt="I'm Yeoman">
+    <br>
+    <form ng-controller="MainCtrl">
+        <div class="input-group">
+            <input ng-model="searchParams" type="text" class="form-control" placeholder="Search">
+            <div class="input-group-btn">
+                <button class="btn btn-default" type="submit" ng-click="search(searchParams)">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

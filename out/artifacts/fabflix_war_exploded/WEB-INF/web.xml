@@ -47,6 +47,10 @@
         <servlet-name>MovieListGenreServlet</servlet-name>
         <servlet-class>com.fabflix.movielist.MovieListGenreServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>StarServlet</servlet-name>
+        <servlet-class>com.fabflix.stars.StarServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>StaticServlet</servlet-name>
@@ -63,5 +67,9 @@
     <servlet-mapping>
         <servlet-name>MovieListGenreServlet</servlet-name>
         <url-pattern>/api/movies/genres</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StarServlet</servlet-name>
+        <url-pattern>/api/star</url-pattern>
     </servlet-mapping>
 </web-app>

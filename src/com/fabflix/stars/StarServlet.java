@@ -1,11 +1,11 @@
-package com.fabflix.movielist;
+package com.fabflix.stars;
 
 /**
  * Created by arifzaidi on 9/26/16.
  */
 // Import required java libraries
 
-import com.fabflix.beans.Genre;
+import com.fabflix.beans.Star;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
@@ -15,14 +15,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
-@WebServlet(name = "MovieListServlet", urlPatterns = {"/api/movies/genres"})
-public class MovieListGenreServlet extends HttpServlet {
-    MovielistDAO ml;
+@WebServlet(name = "MovieListServlet", urlPatterns = {"/api/star"})
+public class StarServlet extends HttpServlet {
+    StarDAO s;
 
     public void init() {
-        ml = new MovielistDAO();
+        s = new StarDAO();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,13 +29,23 @@ public class MovieListGenreServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String type = request.getParameter("type");
         PrintWriter writer = response.getWriter();
-        List<Genre> genres = null;
-        genres = ml.getGenresList();
         Gson gson = new Gson();
-        String genre_json = gson.toJson(genres);
-        writer.print(genre_json);
+
+        Star star = null;
+
+        if (type.equals("single")) {
+            int id = Integer.parseInt(request.getParameter("attribute"));
+            if (id != 0) {
+                star = s.getStarInfo(id);
+                String star_json = gson.toJson(star);
+                writer.print(star_json);
+            }
+        }
     }
+
+
 
 
 }

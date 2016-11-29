@@ -50,8 +50,8 @@ public class MovieListServlet extends HttpServlet {
                 movies = ml.executeSearchByTitle(name);
             }
         }else if(type.equals("single")){
-            String id = request.getParameter("attribute");
-            if(id != null && !id.isEmpty()) {
+            int id = Integer.parseInt(request.getParameter("attribute"));
+            if(id != 0) {
                 Movie movie = ml.getMovie(id);
                 String movie_json = gson.toJson(movie);
                 writer.print(movie_json);

@@ -39,7 +39,7 @@ public class SearchDAO {
             PreparedStatement pst = conn.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                Movie movie = new Movie(rs.getInt("id"), rs.getInt("year"), rs.getString("title"), rs.getString("director"), null, null);
+                Movie movie = new Movie(rs.getInt("id"), rs.getInt("year"), rs.getString("title"), rs.getString("director"), rs.getString("banner_url"), rs.getString("trailer_url"), null, null);
                 movies.add(movie);
             }
 
@@ -53,7 +53,7 @@ public class SearchDAO {
 
     public String formatQueryString(String title, int year, String director, String first_name, String last_name) {
 
-        String query = "SELECT movies.id, title, year, director, first_name, last_name FROM movies LEFT JOIN stars_in_movies ON movies.id = stars_in_movies.movie_id LEFT JOIN stars ON stars_in_movies.star_id = stars.id WHERE true=true ";
+        String query = "SELECT * FROM movies LEFT JOIN stars_in_movies ON movies.id = stars_in_movies.movie_id LEFT JOIN stars ON stars_in_movies.star_id = stars.id WHERE true=true ";
 
         if (!title.isEmpty()) {
             query = query.concat("AND movies.title LIKE \"%" + title + "%\"");

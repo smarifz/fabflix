@@ -2,6 +2,7 @@ package com.fabflix.movielist;
 
 import com.fabflix.beans.Genre;
 import com.fabflix.beans.Movie;
+import com.fabflix.beans.Star;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -32,7 +33,8 @@ public class MovielistDAO {
 
     }
 
-    public List<Genre> getGenres() {
+
+    public List<Genre> getGenresList() {
         List<Genre> genres = new ArrayList<Genre>();
 
         try (
@@ -50,7 +52,6 @@ public class MovielistDAO {
         return genres;
     }
 
-
     public List<Movie> executeSearchByGenre(String genre) {
         List<Movie> movies = new ArrayList<Movie>();
 
@@ -59,7 +60,7 @@ public class MovielistDAO {
                 ResultSet resultSet = statement.executeQuery();
         ) {
             while (resultSet.next()) {
-                Movie movie = new Movie(resultSet.getInt("id"), resultSet.getInt("year"), resultSet.getString("title"), resultSet.getString("director"), resultSet.getString("banner_url"), resultSet.getString("trailer_url"));
+                Movie movie = new Movie(resultSet.getInt("id"), resultSet.getInt("year"), resultSet.getString("title"), resultSet.getString("director"), resultSet.getString("banner_url"), resultSet.getString("trailer_url"), getStars(resultSet.getInt("id")), getGenres(resultSet.getInt("id")));
                 movies.add(movie);
             }
         } catch (SQLException e) {
@@ -74,11 +75,11 @@ public class MovielistDAO {
         List<Movie> movies = new ArrayList<Movie>();
 
         try (
-                PreparedStatement statement = conn.prepareStatement("select * from movies where title like  \'%"+ title+"%\'");
+                PreparedStatement statement = conn.prepareStatement("select * from movies where title like  \'%" + title + "%\'");
                 ResultSet resultSet = statement.executeQuery();
         ) {
             while (resultSet.next()) {
-                Movie movie = new Movie(resultSet.getInt("id"), resultSet.getInt("year"), resultSet.getString("title"), resultSet.getString("director"), resultSet.getString("banner_url"), resultSet.getString("trailer_url"));
+                Movie movie = new Movie(resultSet.getInt("id"), resultSet.getInt("year"), resultSet.getString("title"), resultSet.getString("director"), resultSet.getString("banner_url"), resultSet.getString("trailer_url"), getStars(resultSet.getInt("id")), getGenres(resultSet.getInt("id")));
                 movies.add(movie);
             }
         } catch (SQLException e) {
@@ -89,14 +90,16 @@ public class MovielistDAO {
 
     }
 
-    public Movie getMovie(String id) {
+
+    public Movie getMovie(int id) {
         Movie movie = null;
         try (
-                PreparedStatement statement = conn.prepareStatement("select * from movies where id ="+ id);
+                PreparedStatement statement = conn.prepareStatement("select * from movies where id =" + id);
                 ResultSet resultSet = statement.executeQuery();
         ) {
             while (resultSet.next()) {
-                movie = new Movie(resultSet.getInt("id"), resultSet.getInt("year"), resultSet.getString("title"), resultSet.getString("director"), resultSet.getString("banner_url"), resultSet.getString("trailer_url"));
+                movie = new Movie(resultSet.getInt("id"), resultSet.getInt("year"), resultSet.getString("title"), resultSet.getString("director"), resultSet.getString("banner_url"), resultSet.getString("trailer_url"), getStars(id), getGenres(id));
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -104,6 +107,38 @@ public class MovielistDAO {
 
         return movie;
 
+    }
+
+    public List<Star> getStars(int movieId) {
+        List<Star> stars = new ArrayList<Star>();
+        try (
+                PreparedStatement statement = conn.prepareStatement("select * from stars where id IN (select star_id from stars_in_movies where movie_id =" + movieId + ")");
+                ResultSet resultSet = statement.executeQuery();
+        ) {
+            while (resultSet.next()) {
+                stars.add(new Star(resultSet.getString("first_name"), resultSet.getString("last_name"), resultSet.getInt("dob"), resultSet.getInt("id"), resultSet.getString("photo_url")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return stars;
+    }
+
+    public List<Genre> getGenres(int movieId) {
+        List<Genre> genres = new ArrayList<Genre>();
+        try (
+                PreparedStatement statement = conn.prepareStatement("select * from genres where id IN(select genre_id from genres_in_movies where movie_id="+movieId+")");
+                ResultSet resultSet = statement.executeQuery();
+        ) {
+            while (resultSet.next()) {
+                genres.add(new Genre(resultSet.getInt("id"), resultSet.getString("name")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return genres;
     }
 
 
