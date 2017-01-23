@@ -80,6 +80,40 @@ var app = angular.module ('synerApp', [
 				}
 			})
 
+			.when ('/movies/a/search/:searchParams/:advSearch', {
+				templateUrl: 'app/views/movielist.html',
+				controller: 'MovieListSearchCtrl',
+				resolve: {
+					auth: ["$q", "AuthService", function ($q, AuthService) {
+						var isUserLoggedIn = AuthService.isLoggedIn ();
+						if (isUserLoggedIn) {
+							console.log ("User Logged in");
+							return $q.when (isUserLoggedIn);
+						} else {
+							console.log ("ERROR - No User Logged in");
+							return $q.reject ({authenticated: false});
+						}
+					}]
+				}
+			})
+
+			.when ('/movies/advSearch', {
+				templateUrl: 'app/views/advSearch.html',
+				controller: 'MovieListAdvSearchCtrl',
+				resolve: {
+					auth: ["$q", "AuthService", function ($q, AuthService) {
+						var isUserLoggedIn = AuthService.isLoggedIn ();
+						if (isUserLoggedIn) {
+							console.log ("User Logged in");
+							return $q.when (isUserLoggedIn);
+						} else {
+							console.log ("ERROR - No User Logged in");
+							return $q.reject ({authenticated: false});
+						}
+					}]
+				}
+			})
+
 
 			.when ('/star/:id', {
 				templateUrl: 'app/views/starInfo.html',

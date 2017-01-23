@@ -3,9 +3,11 @@
 angular.module('synerApp')
 .controller("MainCtrl",function ($scope, $location, $window, AuthService, MoviesService) {
 
-	console.log(AuthService.currentUser());
 	//Local variables
 	$scope.allGenres = [];
+	$scope.title = false;
+	$scope.year = false;
+	$scope.director = false;
 
 
 	//Initialize /////////////////////////////////////////////////////////////////////
@@ -20,7 +22,7 @@ angular.module('synerApp')
 			});
 	};
 
-	$scope.search = function(title){
-		$location.path( '/movies/title/'+title );
+	$scope.search = function(searchParams, advSearch){
+		$location.path( '/movies/a/search/'+searchParams+'/'+advSearch );
 	};
 });

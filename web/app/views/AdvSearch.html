@@ -1,0 +1,33 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<header class="hero-unit" id="banner">
+    <div ng-include="'components/header.html'"></div>
+</header>
+
+<div class="container">
+    <form ng-submit="search()">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input name="title" type="text" class="form-control" id="title" placeholder="title" ng-model="attributes.title">
+        </div>
+        <div class="form-group">
+            <label for="year">Year:</label>
+            <input name="year" type="text" class="form-control" id="year" placeholder="year" ng-model="attributes.year">
+        </div>
+        <div class="form-group">
+            <label for="director">Director:</label>
+            <input name="director" type="text" class="form-control" id="director" placeholder="director" ng-model="attributes.director">
+        </div>
+        <div class="form-group">
+            <label for="fname">Star's First Name:</label>
+            <input name="fname" type="text" class="form-control" id="fname" placeholder="first name" ng-model="attributes.fname">
+        </div>
+        <div class="form-group">
+            <label for="lname">Star's last Name::</label>
+            <input name="lname" type="text" class="form-control" id="lname" placeholder="last name" ng-model="attributes.lname">
+        </div>
+        <button type="submit" class="btn btn-default">Search</button>
+    </form>
+</div>
+
+

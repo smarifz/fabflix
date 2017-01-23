@@ -3,40 +3,47 @@ package com.fabflix.search; /**
  */
 // Import required java libraries
 
+import com.google.gson.Gson;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet(name = "SearchServlet", urlPatterns = {"/search"})
+@WebServlet(name = "SearchServlet", urlPatterns = {"/api/search"})
 public class SearchServlet extends HttpServlet {
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request,response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
-
+        PrintWriter writer = response.getWriter();
+        Gson gson = new Gson();
         SearchDAO s = new SearchDAO();
+        String advSearch = request.getParameter("advSearch");
+        List movies = null;
 
-        String title = request.getParameter("title");
-        String year_str = request.getParameter("year");
-        int year = 0;
-        if(!year_str.isEmpty()){
-            year = Integer.parseInt(request.getParameter("year"));
+        if(advSearch.equals("true")){
+            String title = request.getParameter("title");
+            String year = request.getParameter("year");
+            String director = request.getParameter("director");
+            String fname = request.getParameter("fname");
+            String lname = request.getParameter("lname");
+
+            movies= s.executeSearch(true,title, year, director, fname, lname);
+        }else{
+            String searchParam = request.getParameter("searchParams");
+            movies= s.executeSearch(false,searchParam, searchParam, searchParam, searchParam, searchParam);
         }
-        String director = request.getParameter("director");
-        String fname = request.getParameter("fname");
-        String lname = request.getParameter("lname");
 
-        List movies = s.executeSearch(title, year, director, fname, lname);
-        request.setAttribute("movies", movies);
-        request.getRequestDispatcher("/searchResults.jsp").forward(request, response);
-
+        String movies_json = gson.toJson(movies);
+        writer.print(movies_json);
     }
 
 

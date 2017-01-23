@@ -51,6 +51,10 @@
         <servlet-name>StarServlet</servlet-name>
         <servlet-class>com.fabflix.stars.StarServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchServlet</servlet-name>
+        <servlet-class>com.fabflix.search.SearchServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>StaticServlet</servlet-name>
@@ -71,5 +75,9 @@
     <servlet-mapping>
         <servlet-name>StarServlet</servlet-name>
         <url-pattern>/api/star</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchServlet</servlet-name>
+        <url-pattern>/api/search</url-pattern>
     </servlet-mapping>
 </web-app>

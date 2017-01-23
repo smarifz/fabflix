@@ -1,6 +1,16 @@
+'use strict'
 //Service for getting and setting data into MongoDB via API.
 angular.module ('synerApp')
-	.service ('MoviesService', ['$http', 'AuthService', function ($http, AuthService) {
+	.service ('MoviesService', ['$http', 'AuthService', function ($http, $scope, AuthService) {
+
+		var attributes = {
+			searchParams: '',
+			title: '',
+			year: '',
+			director: '',
+			lname: '',
+			fname: ''
+		};
 
 		//Get all the movies
 		var getMoviesRequest = function (type, attr) {
@@ -21,6 +31,38 @@ angular.module ('synerApp')
 			return $http.get ('/api/movies/genres');
 		};
 
+		//Search - ADV search off
+		var searchRequest = function (searchParams) {
+			return $http.get ('/api/search',{
+				params: {
+					searchParams: searchParams,
+					advSearch: false
+				}
+			});
+		};
+
+		//Search - ADV search one
+		var advSearchRequest = function (searchParams) {
+			return $http.get ('/api/search',{
+				params: {
+					title: searchParams.title,
+					year: searchParams.year,
+					director: searchParams.director,
+					fname: searchParams.fname,
+					lname: searchParams.lname,
+					advSearch: true
+				}
+			});
+		};
+
+		var setAttributesRequest = function(data){
+			attributes = data;
+		};
+
+		var getAttributesRequest = function(){
+			return attributes;
+		};
+
 
 		//All the returned methods for this service.
 		return {
@@ -33,6 +75,21 @@ angular.module ('synerApp')
 			getGenres: function () {
 				return getGenresRequest ();
 			},
+			search: function (searchParams) {
+				return searchRequest (searchParams);
+			},
+
+			advSearch: function (searchParams) {
+				return advSearchRequest (searchParams);
+			},
+
+			setAttributes: function(data){
+				return setAttributesRequest(data);
+			},
+
+			getAttributes: function(){
+				return getAttributesRequest();
+			}
 
 		};
 
