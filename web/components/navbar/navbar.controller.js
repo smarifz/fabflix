@@ -3,7 +3,7 @@
 angular.module('synerApp')
   .controller('NavbarCtrl', function ($scope, $location, AuthService) {
 
-    $scope.isLoggedIn = AuthService.isLoggedIn;
+    $scope.isLoggedIn = AuthService.isLoggedIn();
     // console.log('Nav bar login called AuthService.isLoggedIn()');
     $scope.currentUser = "";
     $scope.logOut = AuthService.logOut;
@@ -29,7 +29,7 @@ angular.module('synerApp')
     };
 
     $scope.getCurrentUser = function(){
-      if(AuthService.isLoggedIn)
+      if(AuthService.isLoggedIn())
         $scope.currentUser = AuthService.currentUser();
     }
 
@@ -37,9 +37,9 @@ angular.module('synerApp')
     function showLoginContext(){
 
       this.showLoginLink = function(){
-        if(AuthService.isLoggedIn){
+        if(AuthService.isLoggedIn()){
           loginLink = "/logout";
-          return loginLink
+          return loginLink;
         }
         else{ 
           loginLink = "/login";
@@ -48,7 +48,7 @@ angular.module('synerApp')
       }
 
       this.showLoginTitle = function(){
-        if(AuthService.isLoggedIn){
+        if(AuthService.isLoggedIn()){
           loginTitle = "Logout";
           return loginTitle
         }

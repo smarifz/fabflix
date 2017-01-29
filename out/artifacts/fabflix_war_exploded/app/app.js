@@ -16,18 +16,18 @@ var app = angular.module ('synerApp', [
 			.when ('/', {
 				templateUrl: 'app/views/main.html',
 				controller: 'MainCtrl',
-				resolve: {
-					auth: ["$q", "AuthService", function ($q, AuthService) {
-						var isUserLoggedIn = AuthService.isLoggedIn ();
-						if (isUserLoggedIn) {
-							console.log ("User Logged in");
-							return $q.when (isUserLoggedIn);
-						} else {
-							console.log ("ERROR - No User Logged in");
-							return $q.reject ({authenticated: false});
-						}
-					}]
-				}
+				//resolve: {
+				//	auth: ["$q", "AuthService", function ($q, AuthService) {
+				//		var isUserLoggedIn = AuthService.isLoggedIn ();
+				//		if (isUserLoggedIn) {
+				//			console.log ("User Logged in");
+				//			return $q.when (isUserLoggedIn);
+				//		} else {
+				//			console.log ("ERROR - No User Logged in");
+				//			return $q.reject ({authenticated: false});
+				//		}
+				//	}]
+				//}
 			})
 
 
@@ -51,18 +51,18 @@ var app = angular.module ('synerApp', [
 			.when ('/cart', {
 				templateUrl: 'app/views/shoppingcart.html',
 				controller: 'ShoppingCartCtrl',
-				resolve: {
-					auth: ["$q", "AuthService", function ($q, AuthService) {
-						var isUserLoggedIn = AuthService.isLoggedIn ();
-						if (isUserLoggedIn) {
-							console.log ("User Logged in");
-							return $q.when (isUserLoggedIn);
-						} else {
-							console.log ("ERROR - No User Logged in");
-							return $q.reject ({authenticated: false});
-						}
-					}]
-				}
+				//resolve: {
+				//	auth: ["$q", "AuthService", function ($q, AuthService) {
+				//		var isUserLoggedIn = AuthService.isLoggedIn ();
+				//		if (isUserLoggedIn) {
+				//			console.log ("User Logged in");
+				//			return $q.when (isUserLoggedIn);
+				//		} else {
+				//			console.log ("ERROR - No User Logged in");
+				//			return $q.reject ({authenticated: false});
+				//		}
+				//	}]
+				//}
 			})
 
 			//.when('/movies', {
@@ -84,87 +84,87 @@ var app = angular.module ('synerApp', [
 			.when ('/movies/:type/:attribute', {
 				templateUrl: 'app/views/movielist.html',
 				controller: 'MovieListCustomCtrl',
-				resolve: {
-					auth: ["$q", "AuthService", function ($q, AuthService) {
-						var isUserLoggedIn = AuthService.isLoggedIn ();
-						if (isUserLoggedIn) {
-							console.log ("User Logged in");
-							return $q.when (isUserLoggedIn);
-						} else {
-							console.log ("ERROR - No User Logged in");
-							return $q.reject ({authenticated: false});
-						}
-					}]
-				}
+				//resolve: {
+				//	auth: ["$q", "AuthService", function ($q, AuthService) {
+				//		var isUserLoggedIn = AuthService.isLoggedIn ();
+				//		if (isUserLoggedIn) {
+				//			console.log ("User Logged in");
+				//			return $q.when (isUserLoggedIn);
+				//		} else {
+				//			console.log ("ERROR - No User Logged in");
+				//			return $q.reject ({authenticated: false});
+				//		}
+				//	}]
+				//}
 			})
 
 			.when ('/movies/a/search/:searchParams/:advSearch', {
 				templateUrl: 'app/views/movielist.html',
 				controller: 'MovieListSearchCtrl',
-				resolve: {
-					auth: ["$q", "AuthService", function ($q, AuthService) {
-						var isUserLoggedIn = AuthService.isLoggedIn ();
-						if (isUserLoggedIn) {
-							console.log ("User Logged in");
-							return $q.when (isUserLoggedIn);
-						} else {
-							console.log ("ERROR - No User Logged in");
-							return $q.reject ({authenticated: false});
-						}
-					}]
-				}
+				//resolve: {
+				//	auth: ["$q", "AuthService", function ($q, AuthService) {
+				//		var isUserLoggedIn = AuthService.isLoggedIn ();
+				//		if (isUserLoggedIn) {
+				//			console.log ("User Logged in");
+				//			return $q.when (isUserLoggedIn);
+				//		} else {
+				//			console.log ("ERROR - No User Logged in");
+				//			return $q.reject ({authenticated: false});
+				//		}
+				//	}]
+				//}
 			})
 
 			.when ('/movies/advSearch', {
 				templateUrl: 'app/views/advSearch.html',
 				controller: 'MovieListAdvSearchCtrl',
-				resolve: {
-					auth: ["$q", "AuthService", function ($q, AuthService) {
-						var isUserLoggedIn = AuthService.isLoggedIn ();
-						if (isUserLoggedIn) {
-							console.log ("User Logged in");
-							return $q.when (isUserLoggedIn);
-						} else {
-							console.log ("ERROR - No User Logged in");
-							return $q.reject ({authenticated: false});
-						}
-					}]
-				}
+				//resolve: {
+				//	auth: ["$q", "AuthService", function ($q, AuthService) {
+				//		var isUserLoggedIn = AuthService.isLoggedIn ();
+				//		if (isUserLoggedIn) {
+				//			console.log ("User Logged in");
+				//			return $q.when (isUserLoggedIn);
+				//		} else {
+				//			console.log ("ERROR - No User Logged in");
+				//			return $q.reject ({authenticated: false});
+				//		}
+				//	}]
+				//}
 			})
 
 
 			.when ('/star/:id', {
 				templateUrl: 'app/views/starInfo.html',
 				controller: 'StarInfoCtrl',
-				resolve: {
-					auth: ["$q", "AuthService", function ($q, AuthService) {
-						var isUserLoggedIn = AuthService.isLoggedIn ();
-						if (isUserLoggedIn) {
-							console.log ("User Logged in");
-							return $q.when (isUserLoggedIn);
-						} else {
-							console.log ("ERROR - No User Logged in");
-							return $q.reject ({authenticated: false});
-						}
-					}]
-				}
+				//resolve: {
+				//	auth: ["$q", "AuthService", function ($q, AuthService) {
+				//		var isUserLoggedIn = AuthService.isLoggedIn ();
+				//		if (isUserLoggedIn) {
+				//			console.log ("User Logged in");
+				//			return $q.when (isUserLoggedIn);
+				//		} else {
+				//			console.log ("ERROR - No User Logged in");
+				//			return $q.reject ({authenticated: false});
+				//		}
+				//	}]
+				//}
 			})
 
 			.when ('/movie/:id', {
 				templateUrl: 'app/views/movieInfo.html',
 				controller: 'MovieInfoCtrl',
-				resolve: {
-					auth: ["$q", "AuthService", function ($q, AuthService) {
-						var isUserLoggedIn = AuthService.isLoggedIn ();
-						if (isUserLoggedIn) {
-							console.log ("User Logged in");
-							return $q.when (isUserLoggedIn);
-						} else {
-							console.log ("ERROR - No User Logged in");
-							return $q.reject ({authenticated: false});
-						}
-					}]
-				}
+				//resolve: {
+				//	auth: ["$q", "AuthService", function ($q, AuthService) {
+				//		var isUserLoggedIn = AuthService.isLoggedIn ();
+				//		if (isUserLoggedIn) {
+				//			console.log ("User Logged in");
+				//			return $q.when (isUserLoggedIn);
+				//		} else {
+				//			console.log ("ERROR - No User Logged in");
+				//			return $q.reject ({authenticated: false});
+				//		}
+				//	}]
+				//}
 			})
 
 			.when ('/register', {
@@ -202,7 +202,7 @@ app.run (["$rootScope", "$location",'ShoppingCartService', function ($rootScope,
 	$rootScope.$on ("$routeChangeError", function (event, current, previous, eventObj) {
 		if (eventObj.authenticated === false) {
 			console.log ("Error occured. Now in routeChangeError");
-			$location.path ("/login");
+			$location.path ("/");
 		}
 	});
 }]);

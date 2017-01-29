@@ -11,11 +11,12 @@
     </div>
     <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main" ng-init="getCurrentUser()">
       <ul class="nav navbar-nav">
-        <li ng-show="isLoggedIn()" ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
+        <!--<li ng-show="isLoggedIn()" ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">-->
+        <li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
             <a ng-href="{{item.link}}">{{item.title}}</a>
         </li>
       </ul>
-        <div class="text-right">Welcome <p> {{ currentUser | capitalize }}</div>
+        <div ng-show="isLoggedIn()" class="text-right">Welcome <p> {{ currentUser | capitalize }}</div>
     </div>
   </div>
 </div>
