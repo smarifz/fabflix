@@ -1,14 +1,24 @@
 'use strict'
 //Service for getting and setting data into MongoDB via API.
 angular.module ('synerApp')
-	.service ('ShoppingCartService', ['$http', function ($http, $scope) {
+	.service ('ShoppingCartService', ['$http', '$window', function ($http, $window) {
 
 		var invoice = {
 			movies: []
 		};
 
+		var sync = function () {
+			$window.localStorage['fabflix'] = JSON.stringify (invoice.movies);
+			//$window.localStorage.setItem('fabflix',invoice);
+		};
+
+		var reverseSync = function () {
+			invoice.movies = JSON.parse ($window.localStorage['fabflix']);
+		};
+
 		//Get all the movies
 		var getMoviesRequest = function () {
+			//reverseSync();
 			return invoice.movies;
 		};
 
@@ -24,23 +34,25 @@ angular.module ('synerApp')
 					});
 
 				}
-			})();
+			}) ();
 
-			if (exists){
-				console.log('movie exists');
+			if (exists) {
+				console.log ('movie exists');
 			}
-			else{
+			else {
 				invoice.movies.push ({
 					                     title: movie.title,
-					                     price: movie.price,
-					                     quantity: movie.quantity
+					                     price: 15.99,
+					                     quantity: 1
 				                     });
 				console.log ('movie added', movie);
 			}
+			sync ();
 		};
 
 		var removeMovieRequest = function (index) {
 			invoice.movies.splice (index, 1);
+			sync ();
 		};
 
 		var updateMovieRequest = function (movie) {
@@ -49,7 +61,13 @@ angular.module ('synerApp')
 					m.quantity = movie.quantity;
 				}
 			});
+			sync ();
 
+		};
+
+		var nullifyInvoice = function () {
+			invoice = null;
+			sync();
 		};
 
 
@@ -67,9 +85,20 @@ angular.module ('synerApp')
 			},
 			removeMovie: function (index) {
 				return removeMovieRequest (index);
+			},
+			reverseSync: function () {
+				return reverseSync ();
+			},
+			sync: function () {
+				return sync ();
+			},
+
+			nullifyInvoice: function () {
+				return nullifyInvoice ();
 			}
 
-		};
+		}
+			;
 
 
 	}]);

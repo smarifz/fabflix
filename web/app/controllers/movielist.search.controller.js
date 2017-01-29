@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module ('synerApp')
-	.controller ('MovieListSearchCtrl', function ($scope, $routeParams, MoviesService) {
+	.controller ('MovieListSearchCtrl', function ($scope, $routeParams, MoviesService, ShoppingCartService) {
 		$scope.allMovies = [];
 		$scope.moviesPerPage = 10;
 		$scope.moviesPerPageList = [10,25,50, 100];
@@ -17,6 +17,10 @@ angular.module ('synerApp')
 					$scope.allMovies = data;
 				});
 			}
+		};
+
+		$scope.addToCart = function (movie) {
+			ShoppingCartService.addMovie(movie);
 		};
 
 		//Clear input fields /////////////////////////////////////////////////////////////////////

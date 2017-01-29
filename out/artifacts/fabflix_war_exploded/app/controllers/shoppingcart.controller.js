@@ -15,22 +15,10 @@ angular.module ('synerApp')
 		};
 
 		////Add Movie /////////////////////////////////////////////////////////////////////
-		//$scope.addMovie = function (movie) {
-		//	$scope.reloadCartWithMovies();
-		//	function exist(){
-		//	    if($scope.invoice.movies) {
-		//		    $scope.invoice.movies.forEach (function (m) {
-		//			    if (movie.title === m.title)
-		//				    return true;
-		//		    });
-		//	    }
-		//		return false;
-		//	}
-		//
-		//	if(!exist()) {
-		//		ShoppingCartService.addMovie(movie);
-		//	}
-		//};
+		$scope.sync = function () {
+			console.log('sync called');
+			ShoppingCartService.sync();
+		};
 
 		$scope.reloadCartWithMovies = function(){
 			$scope.invoice.movies = ShoppingCartService.getMovies();

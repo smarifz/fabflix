@@ -6,7 +6,8 @@ var app = angular.module ('synerApp', [
 		'ngSanitize',
 		'ngRoute',
 		'ui.bootstrap',
-		'angularUtils.directives.dirPagination'
+		'angularUtils.directives.dirPagination',
+		'ngStorage'
 	])
 
 	.config (function ($routeProvider, $locationProvider) {
@@ -190,12 +191,12 @@ var app = angular.module ('synerApp', [
 		$locationProvider.html5Mode (true);
 	});
 
-app.run (["$rootScope", "$location", function ($rootScope, $location) {
+app.run (["$rootScope", "$location",'ShoppingCartService', function ($rootScope, $location, ShoppingCartService) {
 
-	console.log ("routeChangeSuccess ");
-
+	//console.log ("routeChangeSuccess ");
 	$rootScope.$on ("$routeChangeSuccess", function (userInfo) {
-		// console.log(userInfo);
+		 console.log("Route changed");
+		ShoppingCartService.reverseSync();
 	});
 
 	$rootScope.$on ("$routeChangeError", function (event, current, previous, eventObj) {

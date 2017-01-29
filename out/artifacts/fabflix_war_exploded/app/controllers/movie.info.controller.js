@@ -12,13 +12,8 @@ angular.module ('synerApp')
 			});
 		};
 
-		$scope.addToCart = function(){
-			var info = {
-				title: $scope.movieInfo.title,
-				price: '15.99',
-				quantity: 1
-			};
-			ShoppingCartService.addMovie(info);
+		$scope.addToCart = function(movie){
+			ShoppingCartService.addMovie(movie);
 		};
 
 		$scope.updateQuantity = function(movie){

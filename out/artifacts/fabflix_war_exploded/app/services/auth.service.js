@@ -1,5 +1,5 @@
 angular.module ('synerApp')
-	.service ('AuthService', ['$http', '$q', '$window', function ($http, $q, $window) {
+	.service ('AuthService', ['$http', '$q', '$window', function ($http, $q, $window, ShoppingCartService) {
 		var auth = {};
 
 
@@ -70,6 +70,8 @@ angular.module ('synerApp')
 
 		var logOutRequest = function () {
 			$window.localStorage.removeItem ('SECRET');
+			$window.localStorage.removeItem ('fabflix');
+			ShoppingCartService.nullifyInvoice();
 			console.log ("User logged out. Token removed from localStorage.");
 		};
 

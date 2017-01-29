@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module ('synerApp')
-	.controller ('MovieListCustomCtrl', function ($scope, $routeParams, MoviesService) {
+	.controller ('MovieListCustomCtrl', function ($scope, $routeParams, MoviesService, ShoppingCartService) {
 		$scope.allMovies = [];
 		$scope.sortType     = 'title'; // set the default sort type
 		$scope.sortReverse  = false;  // set the default sort order
@@ -14,6 +14,10 @@ angular.module ('synerApp')
 			MoviesService.getMovies($routeParams.type, $routeParams.attribute).success (function (data) {
 				$scope.allMovies = data;
 			});
+		};
+
+		$scope.addToCart = function (movie) {
+			ShoppingCartService.addMovie(movie);
 		};
 
 		//Clear input fields /////////////////////////////////////////////////////////////////////

@@ -9,25 +9,16 @@
 <div class="container" data-ng-init="init()">
     <table class="table table-hover table table-condensed">
         <thead>
-        <thead>
-        <tr>
-            <td>
-                ID
-            </td>
-            <td>
-                Title
-            </td>
-            <td>
-                Year
-            </td>
-        </tr>
-        </thead>
         </thead>
         <tbody>
         <tr>
-            <td> {{movieInfo.id}}</a></td>
-            <td> {{movieInfo.title}}</td>
-            <td> {{movieInfo.year | date}}</td>
+            <td> ID: {{movieInfo.id}}</a></td>
+        </tr>
+        <tr>
+            <td> Title: {{movieInfo.title}}</td>
+        </tr>
+        <tr>
+            <td> Year: {{movieInfo.year | date}}</td>
         </tr>
         <tr>
             <td> Name:</td>
@@ -41,7 +32,7 @@
                 {{genre.name}}
             </td>
         </tr>
-        <tr><a ng-click="addToCart(movieInfo)">  Add to shopping cart </a></tr>
+        <tr><button type="button"ng-click="addToCart(movieInfo)" class="btn btn-primary btn-sm">Add to cart</button></tr>
         </tbody>
     </table>
 </div>
