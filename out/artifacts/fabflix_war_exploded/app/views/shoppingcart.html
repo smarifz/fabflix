@@ -1,0 +1,41 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<header class="hero-unit" id="banner">
+    <div ng-include="'components/header.html'"></div>
+</header>
+
+
+<br><br><br>
+
+
+<h2></h2>
+<div class="container" data-ng-init="init()" >
+    <p>Shopping Cart</p>
+    <table class="table">
+        <tr ng-show="invoice.movies > 0">
+            <th>Movie</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th></th>
+        </tr>
+        <tr ng-repeat="movie in invoice.movies track by $index">
+            <td>{{ movie.title }}</td>
+            <!--<td>Quantity: <input type="number" ng-model="movie.quantity" ng-required class="input-mini" value=""><button type="button" ng-click="updateMovie(movie)" class="btn btn-primary btn-sm">Update</button></td>-->
+            <td>Quantity: <input type="number" ng-model="movie.quantity" ng-required class="input-mini" value=""></td>
+            <td>{{ movie.price | currency }} </td>
+            <td>{{movie.quantity * movie.price | currency}}</td>
+            <td>
+                [<a href ng-click="removeMovie($index)">X</a>]
+            </td>
+        </tr>
+        <!--<tr> Cart is empty!</tr>-->
+        <tr>
+            <td><a href ng-click="" class="btn btn-small">Checkout</a></td>
+            <td></td>
+            <td>Total:</td>
+            <td>{{total() | currency}}</td>
+        </tr>
+    </table>
+</div>
+

@@ -30,15 +30,18 @@
             <td> {{movieInfo.year | date}}</td>
         </tr>
         <tr>
+            <td> Name:</td>
             <td ng-repeat="star in movieInfo.stars">
                 <a href="/star/{{star.id}}">  {{star.first_name}} {{star.last_name}} </a>
             </td>
         </tr>
         <tr>
+            <td>Genre: </td>
             <td ng-repeat="genre in movieInfo.genres">
                 {{genre.name}}
             </td>
         </tr>
+        <tr><a ng-click="addToCart(movieInfo)">  Add to shopping cart </a></tr>
         </tbody>
     </table>
 </div>

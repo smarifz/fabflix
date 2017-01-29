@@ -47,6 +47,23 @@ var app = angular.module ('synerApp', [
 				}
 			})
 
+			.when ('/cart', {
+				templateUrl: 'app/views/shoppingcart.html',
+				controller: 'ShoppingCartCtrl',
+				resolve: {
+					auth: ["$q", "AuthService", function ($q, AuthService) {
+						var isUserLoggedIn = AuthService.isLoggedIn ();
+						if (isUserLoggedIn) {
+							console.log ("User Logged in");
+							return $q.when (isUserLoggedIn);
+						} else {
+							console.log ("ERROR - No User Logged in");
+							return $q.reject ({authenticated: false});
+						}
+					}]
+				}
+			})
+
 			//.when('/movies', {
 			//  templateUrl: 'app/views/movielist.html',
 			//  controller: 'MoviesCtrl',
