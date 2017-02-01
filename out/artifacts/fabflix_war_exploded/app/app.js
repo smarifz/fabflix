@@ -167,6 +167,40 @@ var app = angular.module ('synerApp', [
 				//}
 			})
 
+			.when ('/checkout', {
+				templateUrl: 'app/views/checkout.html',
+				controller: 'ShoppingCartCtrl',
+				resolve: {
+					auth: ["$q", "AuthService", function ($q, AuthService) {
+						var isUserLoggedIn = AuthService.isLoggedIn ();
+						if (isUserLoggedIn) {
+							console.log ("User Logged in");
+							return $q.when (isUserLoggedIn);
+						} else {
+							console.log ("ERROR - No User Logged in");
+							return $q.reject ({authenticated: false});
+						}
+					}]
+				}
+			})
+
+			.when ('/confirmation', {
+				templateUrl: 'app/views/confirmation.html',
+				controller: 'ShoppingCartCtrl',
+				resolve: {
+					auth: ["$q", "AuthService", function ($q, AuthService) {
+						var isUserLoggedIn = AuthService.isLoggedIn ();
+						if (isUserLoggedIn) {
+							console.log ("User Logged in");
+							return $q.when (isUserLoggedIn);
+						} else {
+							console.log ("ERROR - No User Logged in");
+							return $q.reject ({authenticated: false});
+						}
+					}]
+				}
+			})
+
 			.when ('/register', {
 				templateUrl: 'app/views/register.html',
 				controller: 'UserCtrl'
@@ -191,12 +225,24 @@ var app = angular.module ('synerApp', [
 		$locationProvider.html5Mode (true);
 	});
 
-app.run (["$rootScope", "$location",'ShoppingCartService', function ($rootScope, $location, ShoppingCartService) {
+app.run (["$rootScope", "$location", 'ShoppingCartService', 'LocationHistoryService', function ($rootScope, $location, ShoppingCartService, LocationHistoryService) {
 
 	//console.log ("routeChangeSuccess ");
-	$rootScope.$on ("$routeChangeSuccess", function (userInfo) {
-		 console.log("Route changed");
-		ShoppingCartService.reverseSync();
+	$rootScope.$on ("$routeChangeSuccess", function (userInfo, $location) {
+		console.log ("Route changed");
+		//LocationHistoryService.store($location.$$route.originalPath);
+		ShoppingCartService.reverseSync ();
+		//if (LocationHistoryService.get() === '/confirmation') {
+		//	ShoppingCartService.nullifyInvoice();
+		//}
+	});
+
+	$rootScope.$on('$locationChangeStart', function(e, newLocation, oldLocation){
+		LocationHistoryService.store(oldLocation);
+
+		if(LocationHistoryService.get().includes("/confirmation")){
+			ShoppingCartService.nullifyInvoice();
+		}
 	});
 
 	$rootScope.$on ("$routeChangeError", function (event, current, previous, eventObj) {
@@ -231,6 +277,7 @@ app.factory ('myHttpResponseInterceptor', ['$q', '$location', '$window', functio
 		}
 	};
 }]);
+
 
 //Http Intercpetor to check auth failures for xhr requests
 app.config (['$httpProvider', function ($httpProvider) {

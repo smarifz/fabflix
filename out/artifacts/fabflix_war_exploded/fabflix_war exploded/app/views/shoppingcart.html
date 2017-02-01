@@ -1,0 +1,42 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<header class="hero-unit" id="banner">
+    <div ng-include="'components/header.html'"></div>
+</header>
+
+
+<br><br><br>
+
+
+<h2></h2>
+<div class="container" data-ng-init="init()" >
+    <h1 class="page-header">Shopping Cart</h1>
+
+    <table class="table">
+        <tr ng-show="invoice.movies > 0">
+            <th>Movie</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th></th>
+        </tr>
+        <tr ng-repeat="movie in invoice.movies track by $index">
+            <td>{{ movie.title }}</td>
+            <!--<td>Quantity: <input type="number" ng-model="movie.quantity" ng-required class="input-mini" value=""><button type="button" ng-click="updateMovie(movie)" class="btn btn-primary btn-sm">Update</button></td>-->
+            <td>Quantity: <input type="number" ng-model="movie.quantity" ng-change="sync()" ng-required class="input-mini" value=""></td>
+            <td>{{ movie.price | currency }} x {{ movie.quantity }} </td>
+            <td>{{movie.quantity * movie.price | currency}}</td>
+            <td>
+                <button type="button"ng-click="removeMovie($index)" class="btn btn-primary btn-sm btn-danger">Remove</button>
+            </td>
+        </tr>
+        <!--<tr> Cart is empty!</tr>-->
+        <tr>
+            <td ng-show="isLoggedIn()"><a href="/checkout" class="btn btn-primary btn-sm btn-success">Checkout</a></td>
+            <td></td>
+            <td>Total:</td>
+            <td>{{total() | currency}}</td>
+        </tr>
+    </table>
+</div>
+

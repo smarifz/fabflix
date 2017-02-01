@@ -31,7 +31,7 @@ angular.module('synerApp')
     $scope.getCurrentUser = function(){
       if(AuthService.isLoggedIn())
         $scope.currentUser = AuthService.currentUser();
-    }
+    };
 
     //Using inner functions to determine if the link and title show 'Login' or 'Logout'
     function showLoginContext(){

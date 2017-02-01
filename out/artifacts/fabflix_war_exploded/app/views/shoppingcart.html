@@ -10,9 +10,11 @@
 
 <h2></h2>
 <div class="container" data-ng-init="init()" >
-    <p>Shopping Cart</p>
+    <h1 class="page-header">Shopping Cart</h1>
+    <p ng-show="showEmptySign()"> Cart is empty!</p>
+
     <table class="table">
-        <tr ng-show="invoice.movies > 0">
+        <tr>
             <th>Movie</th>
             <th>Qty</th>
             <th>Price</th>
@@ -29,9 +31,8 @@
                 <button type="button"ng-click="removeMovie($index)" class="btn btn-primary btn-sm btn-danger">Remove</button>
             </td>
         </tr>
-        <!--<tr> Cart is empty!</tr>-->
         <tr>
-            <td><button type="button" href="/checkout" class="btn btn-primary btn-sm btn-success">Checkout</button></td>
+            <td ng-show="isLoggedIn()"><a href="/checkout" class="btn btn-primary btn-sm btn-success">Checkout</a></td>
             <td></td>
             <td>Total:</td>
             <td>{{total() | currency}}</td>

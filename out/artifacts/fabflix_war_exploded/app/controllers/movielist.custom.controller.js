@@ -9,6 +9,7 @@ angular.module ('synerApp')
 		$scope.moviesPerPage = 10;
 		$scope.moviesPerPageList = [10,25,50, 100];
 
+
 		//Initialize /////////////////////////////////////////////////////////////////////
 		$scope.init = function () {
 			MoviesService.getMovies($routeParams.type, $routeParams.attribute).success (function (data) {

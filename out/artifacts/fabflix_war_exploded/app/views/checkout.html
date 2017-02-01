@@ -1,0 +1,30 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<header class="hero-unit" id="banner">
+  <div ng-include="'components/header.html'"></div>
+</header>
+
+
+
+<div class="container">
+  <h1 class="page-header">Checkout</h1>
+  <form ng-submit="checkout(fname, lname, cc, exp)">
+    <div class="form-group">
+      <label for="cc">Card Number</label>
+      <input name="cc" type="text" class="form-control" id="cc" placeholder="Name" ng-model="cc">
+    </div>
+    <div class="form-group">
+      <label for="exp">Expiration Date</label>
+      <input name="exp" type="date" class="form-control" id="exp" placeholder="exp" ng-model="exp">
+    </div>  
+    <div class="form-group">
+      <label for="fname">First Name</label>
+      <input name="fname" type="text" class="form-control" id="fname" placeholder="First Name" ng-model="fname">
+    </div>
+    <div class="form-group">
+      <label for="lname">First Name</label>
+      <input name="lname" type="text" class="form-control" id="lname" placeholder="Last Name" ng-model="lname">
+    </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+</div>

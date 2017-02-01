@@ -1,15 +1,15 @@
 'use strict'
 //Service for getting and setting data into MongoDB via API.
 angular.module ('synerApp')
-	.service ('ShoppingCartService', ['$http', '$window', function ($http, $window) {
+	.service ('ShoppingCartService', ['$http', '$window', '$location', function ($http, $window, $location) {
 
 		var invoice = {
 			movies: []
 		};
 
 		var sync = function () {
-			$window.localStorage['fabflix'] = JSON.stringify (invoice.movies);
-			//$window.localStorage.setItem('fabflix',invoice);
+			//if (invoice.movies.length > 0)
+				$window.localStorage['fabflix'] = JSON.stringify (invoice.movies);
 		};
 
 		var reverseSync = function () {
@@ -41,9 +41,12 @@ angular.module ('synerApp')
 			}
 			else {
 				invoice.movies.push ({
+					                     id: movie.id,
 					                     title: movie.title,
 					                     price: 15.99,
-					                     quantity: 1
+					                     quantity: 1,
+					                     salesId: null,
+
 				                     });
 				console.log ('movie added', movie);
 			}
@@ -66,8 +69,45 @@ angular.module ('synerApp')
 		};
 
 		var nullifyInvoice = function () {
-			invoice = null;
-			sync();
+			invoice.movies = [];
+			sync ();
+		};
+
+		//Get all the genres
+		var checkoutRequest = function (fname, lname, cc, exp, ids) {
+			return $http.get ('/api/checkout', {
+				params: {
+					fname: fname,
+					lname: lname,
+					cc: cc,
+					exp: exp,
+					ids: JSON.stringify (ids)
+				}
+			}).then (function successCallback (response) {
+				// this callback will be called asynchronously
+				// when the response is available
+				console.log (response)
+				if (response.status === 200) {
+					var salesId = response.data.split (' ');
+					invoice.movies.forEach (function (movie, idx) {
+						movie.salesId = salesId[idx];
+					});
+					sync ();
+					$location.url ('/confirmation');
+				}
+
+			}, function errorCallback (response) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+			});
+		};
+
+		var getSizeRequest = function(){
+			if(invoice.movies)
+				return invoice.movies.length;
+			else
+				return 0;
+
 		};
 
 
@@ -95,6 +135,14 @@ angular.module ('synerApp')
 
 			nullifyInvoice: function () {
 				return nullifyInvoice ();
+			},
+
+			checkout: function (fname, lname, cc, exp, ids) {
+				return checkoutRequest (fname, lname, cc, exp, ids);
+			},
+
+			getSize : function(){
+				return getSizeRequest();
 			}
 
 		}
