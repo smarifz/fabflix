@@ -63,7 +63,7 @@ public class SearchDAO {
         query = query.concat(logicalOperator + " movies.year LIKE \"%" + year + "%\"");
         query = query.concat(logicalOperator + " movies.director LIKE \"%" + director + "%\"");
         query = query.concat(logicalOperator + " stars.first_name LIKE \"%" + first_name + "%\"");
-        query = query.concat(logicalOperator + " stars.last_name LIKE \"%" + last_name + "%\"");
+        query = query.concat(logicalOperator + " stars.last_name LIKE \"%" + last_name + "%\" GROUP BY movies.id");
 
         return query;
     }

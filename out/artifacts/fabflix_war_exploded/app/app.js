@@ -201,6 +201,11 @@ var app = angular.module ('synerApp', [
 				}
 			})
 
+			.when ('/failed', {
+				templateUrl: 'app/views/failed.html',
+				controller: 'ShoppingCartCtrl'
+			})
+
 			.when ('/register', {
 				templateUrl: 'app/views/register.html',
 				controller: 'UserCtrl'

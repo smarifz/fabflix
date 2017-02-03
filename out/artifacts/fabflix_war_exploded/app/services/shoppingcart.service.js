@@ -94,11 +94,13 @@ angular.module ('synerApp')
 					});
 					sync ();
 					$location.url ('/confirmation');
-				}
+				}else
+					$location.url ('/failed');
+
 
 			}, function errorCallback (response) {
-				// called asynchronously if an error occurs
-				// or server returns response with an error status.
+				$location.url ('/failed');
+
 			});
 		};
 

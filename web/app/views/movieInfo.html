@@ -7,21 +7,27 @@
 
 <br><br><br>
 <div class="container" data-ng-init="init()">
-    <table class="table table-hover table table-condensed">
+    <table class="table table-condensed">
         <thead>
         </thead>
         <tbody>
         <tr>
-            <td> ID: {{movieInfo.id}}</a></td>
+            <td> <img src="{{movieInfo.banner_url}}"></td>
+        </tr>
+        <tr>
+            <td> ID: {{movieInfo.id}}</td>
         </tr>
         <tr>
             <td> Title: {{movieInfo.title}}</td>
         </tr>
         <tr>
+            <td> Director: {{movieInfo.director}}</td>
+        </tr>
+        <tr>
             <td> Year: {{movieInfo.year | date}}</td>
         </tr>
         <tr>
-            <td> Name:</td>
+            <td> Stars:</td>
             <td ng-repeat="star in movieInfo.stars">
                 <a href="/star/{{star.id}}">  {{star.first_name}} {{star.last_name}} </a>
             </td>

@@ -40,7 +40,21 @@
         <tbody>
         <tr dir-paginate="movie in allMovies| orderBy:sortType:sortReverse | itemsPerPage: moviesPerPage track by $index">
             <td><a href="/movie/{{movie.id}}">{{movie.id}}</a></td>
-            <td> {{movie.title}}</td>
+            <td>
+                <table>
+                    <tr>
+                        <td>{{movie.title}}</td>
+                    </tr>
+                    <tr>
+
+                        <td>
+                            <img style="height:225px;width:150px;" src="{{movie.banner_url}}"><br>
+                            Director: {{movie.director}}
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
             <td> {{movie.year}}</td>
             <td><button type="button"ng-click="addToCart(movie)" class="btn btn-primary btn-sm ">Add to cart</button></td>
         </tr>
