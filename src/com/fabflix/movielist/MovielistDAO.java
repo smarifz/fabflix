@@ -116,7 +116,7 @@ public class MovielistDAO {
                 ResultSet resultSet = statement.executeQuery();
         ) {
             while (resultSet.next()) {
-                stars.add(new Star(resultSet.getString("first_name"), resultSet.getString("last_name"), resultSet.getInt("dob"), resultSet.getInt("id"), resultSet.getString("photo_url")));
+                stars.add(new Star(resultSet.getString("first_name"), resultSet.getString("last_name"), resultSet.getInt("dob"), resultSet.getInt("id"), resultSet.getString("photo_url"), null));
             }
         } catch (SQLException e) {
             e.printStackTrace();

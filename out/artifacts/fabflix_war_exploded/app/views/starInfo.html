@@ -14,13 +14,16 @@
 
             </td>
             <td>
-                ID
+                First Name
             </td>
             <td>
-                Title
+                Last Name
             </td>
             <td>
-                Year
+                DOB
+            </td>
+            <td>
+                Movies
             </td>
         </tr>
         </thead>
@@ -31,6 +34,13 @@
             <td> {{starInfo.first_name}}</td>
             <td> {{starInfo.last_name}}</td>
             <td> {{starInfo.dob}}</td>
+            <td>
+                <ul class="example-animate-container">
+                    <li class="animate-repeat" ng-repeat="movie in starInfo.movies">
+                        <a href="/movie/{{movie.id}}"> {{movie.title}} </a>
+                    </li>
+                </ul>
+            </td>
         </tr>
         </tbody>
     </table>

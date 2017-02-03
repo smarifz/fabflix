@@ -1,8 +1,10 @@
 package com.fabflix.stars;
 
+import com.fabflix.beans.Movie;
 import com.fabflix.beans.Star;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  * Created by arifzaidi on 9/30/16.
@@ -38,13 +40,29 @@ public class StarDAO {
                 ResultSet resultSet = statement.executeQuery();
         ) {
             while (resultSet.next()) {
-                star = new Star(resultSet.getString("first_name"), resultSet.getString("last_name"), resultSet.getInt("dob"), resultSet.getInt("id"), resultSet.getString("photo_url"));
+                star = new Star(resultSet.getString("first_name"), resultSet.getString("last_name"), resultSet.getInt("dob"), resultSet.getInt("id"), resultSet.getString("photo_url"), getMoviesOfStar(id));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return star;
+    }
+
+    public ArrayList<Movie> getMoviesOfStar(int id){
+        ArrayList<Movie> movies = new ArrayList<>();
+        try (
+                PreparedStatement statement = conn.prepareStatement("SELECT * from movies where id IN (SELECT movie_id FROM stars LEFT JOIN stars_in_movies ON stars.id = stars_in_movies.star_id where stars.id = "+id+");");
+                ResultSet resultSet = statement.executeQuery();
+        ) {
+            while (resultSet.next()) {
+                movies.add(new Movie(resultSet.getInt("id"), resultSet.getInt("year"), resultSet.getString("title"), resultSet.getString("director"), resultSet.getString("banner_url"), resultSet.getString("trailer_url"), null, null));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return movies;
     }
 
 
