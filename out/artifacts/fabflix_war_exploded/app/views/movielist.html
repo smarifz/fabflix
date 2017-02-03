@@ -39,24 +39,47 @@
 
         <tbody>
         <tr dir-paginate="movie in allMovies| orderBy:sortType:sortReverse | itemsPerPage: moviesPerPage track by $index">
-            <td><a href="/movie/{{movie.id}}">{{movie.id}}</a></td>
+            <td>
+                <a href="/movie/{{movie.id}}">{{movie.id}}</a><br>
+                <img style="height:225px;width:150px;" src="{{movie.banner_url}}"><br>
+            </td>
             <td>
                 <table>
                     <tr>
-                        <td>{{movie.title}}</td>
+                        <td><h4>{{movie.title}}</h4></td>
                     </tr>
                     <tr>
-
                         <td>
-                            <img style="height:225px;width:150px;" src="{{movie.banner_url}}"><br>
                             Director: {{movie.director}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Star(s):
+                            <ul class="example-animate-container">
+                                <li class="animate-repeat" ng-repeat="star in movie.stars">
+                                    <a href="/star/{{star.id}}"> {{star.first_name}} {{star.last_name}} </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Genre(s):
+                            <ul class="example-animate-container">
+                                <li class="animate-repeat" ng-repeat="genre in movie.genres">
+                                    {{genre.name}}
+                                </li>
+                            </ul>
                         </td>
                     </tr>
                 </table>
 
             </td>
             <td> {{movie.year}}</td>
-            <td><button type="button"ng-click="addToCart(movie)" class="btn btn-primary btn-sm ">Add to cart</button></td>
+            <td>
+                <button type="button" ng-click="addToCart(movie)" class="btn btn-primary btn-sm ">Add to cart</button>
+            </td>
         </tr>
         </tbody>
 
@@ -64,10 +87,12 @@
 
     <table>
         <tr>
-            <dir-pagination-controls></dir-pagination-controls>
-        </tr>
-        <tr>
-            <select ng-model="moviesPerPage" ng-options="x for x in moviesPerPageList"></select>
+            <td>
+                <dir-pagination-controls></dir-pagination-controls>
+            </td>
+            <td>
+                <select ng-model="moviesPerPage" ng-options="x for x in moviesPerPageList"></select>
+            </td>
         </tr>
     </table>
 </div>
