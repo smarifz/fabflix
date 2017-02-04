@@ -69,7 +69,7 @@
                             Genre(s):
                             <ul class="example-animate-container">
                                 <li class="animate-repeat" ng-repeat="genre in movie.genres">
-                                    {{genre.name}}
+                                    <a href="/movies/genre/{{genre.id}}"> {{ genre.name }} </a>
                                 </li>
                             </ul>
                         </td>

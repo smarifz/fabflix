@@ -33,6 +33,7 @@
         </tr>
         <tr>
             <td ng-show="isLoggedIn()"><a href="/checkout" class="btn btn-primary btn-sm btn-success">Checkout</a></td>
+            <td ng-show="!isLoggedIn()"><a href="/login" class="btn btn-primary btn-sm btn-success">Login to checkout!</a></td>
             <td></td>
             <td>Total:</td>
             <td>{{total() | currency}}</td>

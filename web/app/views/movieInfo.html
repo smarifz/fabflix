@@ -42,7 +42,7 @@
             <td>
                 <ul class="example-animate-container">
                     <li class="animate-repeat" ng-repeat="genre in movieInfo.genres">
-                        {{ genre.name }}
+                        <a href="/movies/genre/{{genre.id}}"> {{ genre.name }} </a>
                     </li>
                 </ul>
             </td>
