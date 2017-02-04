@@ -3,17 +3,24 @@
     <img style="width:128px;height:128px;" src="assets/images/fabflixfish.png" alt="Fabflix">
     <br>
     <form ng-controller="MainCtrl">
-        <div class="row">
-            <div class="col-sm-12">
-                <input ng-model="searchParams" type="text" class="form-control" placeholder="Search">
-                <a href="/movies/advSearch"> Advanced Search </a>
-                <div class="input-group-btn">
-                    <button class="btn btn-default" type="submit"
+
+        <table align="center" width="40%">
+            <tr>
+                <td>
+                    <input ng-model="searchParams" type="text" class="form-control" placeholder="Search" align="center">
+                </td>
+                <td>
+                    <button class="btn btn-default" type="submit" align="center"
                             ng-click="search(searchParams, false)">
                         <i class="glyphicon glyphicon-search"></i>
                     </button>
-                </div>
-            </div>
-        </div>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <a style="color:white" href="/movies/advSearch"> Advanced Search </a>
+            </tr>
+        </table>
     </form>
 </div>

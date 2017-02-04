@@ -5,16 +5,20 @@ angular.module ('synerApp')
 		$scope.allMovies = [];
 		$scope.moviesPerPage = 10;
 		$scope.moviesPerPageList = [10,25,50, 100];
+		$scope.loading = false;
 
 		//Initialize /////////////////////////////////////////////////////////////////////
 		$scope.init = function () {
+			$scope.loading = true;
 			if($routeParams.advSearch === "true"){
 				MoviesService.advSearch (MoviesService.getAttributes()).success (function (data) {
 					$scope.allMovies = data;
+					$scope.loading = false;
 				});
 			}else {
 				MoviesService.search ($routeParams.searchParams).success (function (data) {
 					$scope.allMovies = data;
+					$scope.loading = false;
 				});
 			}
 		};

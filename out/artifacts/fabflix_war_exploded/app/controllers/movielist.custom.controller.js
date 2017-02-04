@@ -8,12 +8,15 @@ angular.module ('synerApp')
 		$scope.searchModel   = 'title';     // set the default search/filter term
 		$scope.moviesPerPage = 10;
 		$scope.moviesPerPageList = [10,25,50, 100];
+		$scope.loading = false;
 
 
 		//Initialize /////////////////////////////////////////////////////////////////////
 		$scope.init = function () {
+			$scope.loading = true;
 			MoviesService.getMovies($routeParams.type, $routeParams.attribute).success (function (data) {
 				$scope.allMovies = data;
+				$scope.loading = false;
 			});
 		};
 

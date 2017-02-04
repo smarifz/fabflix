@@ -5,6 +5,7 @@
 </header>
 
 <div class="container" data-ng-init="init()">
+
     <h1 class="page-header">Movies </h1>
 
     <table class="table table-bordered table-striped">
@@ -46,7 +47,7 @@
             <td>
                 <table>
                     <tr>
-                        <td><h4<a href="/movie/{{movie.id}}">{{movie.title}}</a><br></h4></td>
+                        <td><h4><a href="/movie/{{movie.id}}">{{movie.title}}</a><br></h4></td>
                     </tr>
                     <tr>
                         <td>
@@ -98,3 +99,6 @@
 </div>
 
 
+<div>
+    <img class="loading" src="assets/images/loading.gif" ng-show="loading"/>
+</div>
